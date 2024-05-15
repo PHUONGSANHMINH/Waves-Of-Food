@@ -56,7 +56,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/yeon_sung"
                 android:paddingLeft="8dp"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -66,7 +67,8 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +90,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/yeon_sung"
                 android:paddingLeft="8dp"
-                android:text="Address" />
+                android:text="Address"
+                android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -100,7 +103,8 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="textMultiLine"
-                android:text="Sample like this Sample like this Sample like this Sample like this Sample like this" />
+                android:text="Sample like this Sample like this Sample like this Sample like this Sample like this"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,7 +126,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/yeon_sung"
                 android:paddingLeft="8dp"
-                android:text="Phone" />
+                android:text="Phone"
+                android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -132,7 +137,8 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="text"
-                android:text="123456789" />
+                android:text="123456789"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,7 +160,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/yeon_sung"
                 android:paddingLeft="8dp"
-                android:text="Payment Method" />
+                android:text="Payment Method"
+                android:textColor="@color/black" />
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -184,7 +191,8 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/yeon_sung"
                 android:paddingLeft="8dp"
-                android:text="Total Amount" />
+                android:text="Total Amount"
+                android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="wrap_content"
