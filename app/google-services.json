@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "188728033202",
+    "firebase_url": "https://wave-of-food-2406d-default-rtdb.firebaseio.com",
+    "project_id": "wave-of-food-2406d",
+    "storage_bucket": "wave-of-food-2406d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188728033202:android:c1b55484470e190bfa2eab",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188728033202-ap92h3d8gd27pe69jj17le1iuneqp4t9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.admin",
+            "certificate_hash": "fab495affb00dac86d85b5ef34d43ab10b981094"
+          }
+        },
+        {
+          "client_id": "188728033202-rosghmp17268rkkbmnkdoiqo4ndi882m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLlcAqXdM6nFD-6qazQ0IvJYBrGsEBAYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188728033202-rosghmp17268rkkbmnkdoiqo4ndi882m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188728033202:android:5dc3311bb157862dfa2eab",
+        "android_client_info": {
+          "package_name": "com.example.wavesoffood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188728033202-rosghmp17268rkkbmnkdoiqo4ndi882m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLlcAqXdM6nFD-6qazQ0IvJYBrGsEBAYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188728033202-rosghmp17268rkkbmnkdoiqo4ndi882m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
