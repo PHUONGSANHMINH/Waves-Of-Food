@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
@@ -59,6 +60,7 @@ class SignActivity : AppCompatActivity() {
         }
         binding.googleButton.setOnClickListener{
             val signIntent = googleSignInClient.signInIntent
+            launcher.launch(signIntent)
         }
     }
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -70,7 +72,8 @@ class SignActivity : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
                 auth.signInWithCredential(credential).addOnCompleteListener { task->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
+                        Toast.makeText(this, "Sign Successful" , Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this , MainActivity::class.java))
                         finish()
                     }else {
                         Toast.makeText(this, "Sign-in failed", Toast.LENGTH_SHORT).show()
@@ -106,4 +109,9 @@ class SignActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         database.child("user").child(userId).setValue(user)
     }
+
+
+
+
+
 }
