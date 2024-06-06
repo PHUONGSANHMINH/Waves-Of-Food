@@ -35,6 +35,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         binding.buttonBack.setOnClickListener{
             dismiss()
         }
+
         retrieveMenuItems()
 
         return binding.root
