@@ -14,11 +14,11 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/button8"
-            android:scaleType="centerCrop"
+            android:id="@+id/backButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
             android:src="@drawable/arrow_left"
             android:text="Button" />
 
@@ -68,7 +68,6 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="text"
-                android:text="Name"
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -105,7 +104,6 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="textMultiLine"
-                android:text="Sample like this Sample like this Sample like this Sample like this Sample like this"
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -140,7 +138,6 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="text"
-                android:text="123456789"
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -170,8 +167,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/cashondelivery1" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -208,7 +204,6 @@
                 android:gravity="end"
                 android:inputType="text"
                 android:paddingEnd="32dp"
-                android:text="$5"
                 android:textColor="@color/textColor" />
         </LinearLayout>
     </LinearLayout>

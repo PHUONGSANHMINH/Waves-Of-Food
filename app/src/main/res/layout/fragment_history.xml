@@ -35,6 +35,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView24">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recentbuyitem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
