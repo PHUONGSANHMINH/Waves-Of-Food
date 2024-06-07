@@ -8,7 +8,7 @@ class OrderDetails():Parcelable{
     var userUid : String? = null
     var userName : String? = null
     var foodNames : MutableList<String>? = null
-    var foodImage : MutableList<String>? = null
+    var foodImages : MutableList<String>? = null
     var foodPrices : MutableList<String>? = null
     var foodQuantities : MutableList<Int>? = null
     var address : String? = null
@@ -49,7 +49,7 @@ class OrderDetails():Parcelable{
         this.userName = name
         this.foodNames = foodItemName
         this.foodPrices = foodItemPrice
-        this.foodImage = foodItemImage
+        this.foodImages = foodItemImage
         this.foodQuantities = foodItemQuantities
         this.address = address
         this.totalPrice = totalAmount

@@ -2,11 +2,18 @@ package com.example.wavesoffood.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.content.Context
+import android.net.Uri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.wavesoffood.databinding.BuyAgainItemBinding
 
-class BuyAgainAdapter(private val buyAgainFoodName:ArrayList<String>, private val buyAgainFoodPrice:ArrayList<String>, private val buyAgainFoodImage:ArrayList<Int>):RecyclerView
-    .Adapter<BuyAgainAdapter.BuyAgainViewHolder>(){
+class BuyAgainAdapter(
+    private val buyAgainFoodName:MutableList<String>,
+    private val buyAgainFoodPrice:MutableList<String>,
+    private val buyAgainFoodImage:MutableList<String>,
+    private var requireContext : Context
+):RecyclerView.Adapter<BuyAgainAdapter.BuyAgainViewHolder>(){
 
 
     override fun onCreateViewHolder(
@@ -22,11 +29,13 @@ class BuyAgainAdapter(private val buyAgainFoodName:ArrayList<String>, private va
     }
 
     override fun getItemCount(): Int = buyAgainFoodName.size
-    class BuyAgainViewHolder(private val binding: BuyAgainItemBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind (foodName:String, foodPrice:String, foodImage:Int ){
+    inner class BuyAgainViewHolder(private val binding: BuyAgainItemBinding):RecyclerView.ViewHolder(binding.root) {
+        fun bind (foodName:String, foodPrice:String, foodImage: String ){
             binding.buyAgainFoodName.text = foodName
             binding.buyAgainFoodPrice.text = foodPrice
-            binding.buyAgainFoodImage.setImageResource(foodImage)
+            val uriString = foodImage
+            val uri = Uri.parse(uriString)
+            Glide.with(requireContext).load(uri).into(binding.buyAgainFoodImage)
         }
     }
 }
