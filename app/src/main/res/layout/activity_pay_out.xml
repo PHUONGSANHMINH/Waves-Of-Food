@@ -60,6 +60,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,6 +95,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -130,6 +132,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -195,6 +198,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/totalAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -204,8 +208,8 @@
                 android:gravity="end"
                 android:inputType="text"
                 android:paddingEnd="32dp"
-                android:textColor="@color/textColor"
-                android:text="$5" />
+                android:text="$5"
+                android:textColor="@color/textColor" />
         </LinearLayout>
     </LinearLayout>
 

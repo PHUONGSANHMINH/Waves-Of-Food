@@ -51,12 +51,64 @@ class CartFragment : Fragment() {
 
 
         binding.proceedButton.setOnClickListener {
-            val intent = Intent(requireContext(), PayOutActivity::class.java)
-            startActivity(intent)
+            getOrderItemsDetail()
+
         }
 
 
             return binding.root
+    }
+
+    private fun getOrderItemsDetail() {
+        val orderIdReference: DatabaseReference = database.reference.child("user").child(userId).child("CartItems")
+
+        val foodName = mutableListOf<String>()
+        val foodPrice = mutableListOf<String>()
+        val foodImage = mutableListOf<String>()
+        val foodDescription = mutableListOf<String>()
+        val foodIngredient = mutableListOf<String>()
+
+        val foodQuantities = cartAdapter.getUpdatedItemsQuantities()
+
+        orderIdReference.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+                    val orderItems = foodSnapshot.getValue(CartItems::class.java)
+
+                    orderItems?.foodName?.let { foodName.add(it) }
+                    orderItems?.foodPrice?.let { foodPrice.add(it) }
+                    orderItems?.foodDescription?.let { foodDescription.add(it) }
+                    orderItems?.foodImage?.let { foodImage.add(it) }
+                    orderItems?.foodIngredient?.let { foodIngredient.add(it) }
+                }
+                orderNow(foodName, foodPrice, foodDescription, foodImage, foodIngredient, foodQuantities)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Order making failed. Please Try Again.", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun orderNow(
+        foodName: MutableList<String>,
+        foodPrice: MutableList<String>,
+        foodDescription: MutableList<String>,
+        foodImage: MutableList<String>,
+        foodIngredient: MutableList<String>,
+        foodQuantities: MutableList<Int>,
+    ) {
+        if (isAdded && context != null) {
+            val intent = Intent(requireContext(), PayOutActivity::class.java)
+            intent.putExtra("FoodItemName", foodName as ArrayList<String>)
+            intent.putExtra("FoodItemPrice", foodPrice as ArrayList<String>)
+            intent.putExtra("FoodItemImage", foodImage as ArrayList<String>)
+            intent.putExtra("FoodItemDescription", foodDescription as ArrayList<String>)
+            intent.putExtra("FoodItemIngredient", foodIngredient as ArrayList<String>)
+            intent.putExtra("FoodItemQuantities", foodQuantities as ArrayList<Int>)
+            startActivity(intent)
+        }
     }
 
     private fun retrieveCartItems() {
@@ -88,16 +140,16 @@ class CartFragment : Fragment() {
                    cartItems?.foodDescription?.let { foodDescription.add(it) }
                    cartItems?.foodImage?.let { foodImagesUri.add(it) }
                    cartItems?.foodQuantity?.let { quantity.add(it) }
-                   cartItems?.foodIngredint?.let { foodIngredients.add(it) }
+                   cartItems?.foodIngredient?.let { foodIngredients.add(it) }
 
                }
                 setAdapter()
             }
 
             private fun setAdapter() {
-                val adapter = CartAdapter(requireContext(), foodNames, foodPrices, foodDescription,foodImagesUri, quantity, foodIngredients)
+                cartAdapter = CartAdapter(requireContext(), foodNames, foodPrices, foodDescription,foodImagesUri, quantity, foodIngredients)
                 binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                binding.cartRecyclerView.adapter = adapter
+                binding.cartRecyclerView.adapter = cartAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {

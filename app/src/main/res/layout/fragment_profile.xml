@@ -28,7 +28,7 @@
             android:paddingEnd="16dp">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nameTXj"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -39,7 +39,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/nameTextField"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
         android:paddingEnd="16dp">
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/addressPO"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -76,7 +76,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/addressTextField"
+            android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -104,7 +104,7 @@
             android:paddingEnd="16dp">
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/emailTX"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -115,7 +115,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/emailTextField"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -142,7 +142,7 @@
             android:paddingEnd="16dp">
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/phonePO"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -153,7 +153,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/phoneTextField"
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -168,7 +168,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button6"
+        android:id="@+id/saveInfoButton"
         android:elevation="5dp"
         android:background="@drawable/proceedbuttonshape"
         android:layout_width="match_parent"
