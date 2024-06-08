@@ -17,6 +17,8 @@
             android:id="@+id/backButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/arrow_left"
@@ -167,6 +169,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/cashondelivery1"
                 android:layout_weight="1" />
         </LinearLayout>
 
