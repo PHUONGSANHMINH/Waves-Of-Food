@@ -7,87 +7,94 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wavesoffood.R
 import com.example.wavesoffood.adapter.MenuAdapter
 import com.example.wavesoffood.databinding.FragmentSearchBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.example.wavesoffood.model.MenuItem
 
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var adapter:MenuAdapter
-    private val originalMenuFoodName = listOf("Burger", "sandwich", "momo", "item", "sandwich", "momo")
-    private val originalmenuItemPrice = listOf("$5", "$6", "$8", "$9", "$10", "$10")
-    private val originalmenuImage = listOf(
-        R.drawable.menu1,
-        R.drawable.menu2,
-        R.drawable.menu3,
-        R.drawable.menu4,
-        R.drawable.menu5,
-        R.drawable.menu7
-    )
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-    private val filterMenuFoodName = mutableListOf<String>()
-    private val filterMenuItemPrice = mutableListOf<String>()
-    private val filterMenuImage = mutableListOf<Int>()
+    private lateinit var adapter: MenuAdapter
+    private lateinit var database: FirebaseDatabase
+    private val originalMenuItems = mutableListOf<MenuItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        binding = FragmentSearchBinding.inflate(inflater,container,false)
-       // adapter = MenuAdapter(filterMenuFoodName,filterMenuItemPrice,filterMenuImage, requireContext())
-        binding.menuRecylclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.menuRecylclerView.adapter = adapter
+        retrieveMenuItem()
+
         setupSearchView()
-        showAllMenu()
+
         return binding.root
     }
 
-    private fun showAllMenu() {
-        filterMenuFoodName.clear()
-        filterMenuItemPrice.clear()
-        filterMenuImage.clear()
+    private fun retrieveMenuItem() {
+        database = FirebaseDatabase.getInstance()
 
-        filterMenuFoodName.addAll(originalMenuFoodName)
-        filterMenuItemPrice.addAll(originalmenuItemPrice)
-        filterMenuImage.addAll(originalmenuImage)
+        val foodReference: DatabaseReference = database.reference.child("menu")
+        foodReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (foodSnapshot in snapshot.children) {
+                    val menuItem = foodSnapshot.getValue(MenuItem::class.java)
+                    menuItem?.let {
+                        originalMenuItems.add(it)
+                    }
+                }
+                showAllMenu()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
     }
+
+    private fun showAllMenu() {
+        val filteredMenuItem = ArrayList(originalMenuItems)
+        setAdapter(filteredMenuItem)
+    }
+
+    private fun setAdapter(filteredMenuItem: List<MenuItem>) {
+        adapter = MenuAdapter(filteredMenuItem, requireContext())
+        binding.menuRecylclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.menuRecylclerView.adapter = adapter
+    }
+
 
     private fun setupSearchView() {
-       binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-           override fun onQueryTextSubmit(query: String): Boolean {
-                filterMenuItem(query)
-               return true
-           }
-
-           override fun onQueryTextChange(newText: String): Boolean {
-                filterMenuItem(newText)
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                filterMenuItems(query)
                 return true
-           }
-       })
-    }
-
-    private fun filterMenuItem(query: String) {
-        filterMenuFoodName.clear()
-        filterMenuItemPrice.clear()
-        filterMenuImage.clear()
-
-        originalMenuFoodName.forEachIndexed{
-            index, foodName ->
-            if (foodName.contains(query,ignoreCase = true)){
-                filterMenuFoodName.add(foodName)
-                filterMenuItemPrice.add(originalmenuItemPrice[index])
-                filterMenuImage.add(originalmenuImage[index])
             }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filterMenuItems(newText)
+                return true
+            }
+        })
+    }
+
+    private fun filterMenuItems(query: String) {
+        val filteredMenuItems = originalMenuItems.filter {
+            it.foodName?.contains(query, ignoreCase = true) == true
         }
-        adapter.notifyDataSetChanged()
+        setAdapter(filteredMenuItems)
     }
 
-    companion object {
+    companion object{
 
     }
+
 }
+
+

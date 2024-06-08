@@ -40,7 +40,7 @@ class RecentOrderItems : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-        val rv: RecyclerView = binding.recyclerViewRecentBuy
+        val rv = binding.recyclerViewRecentBuy
         rv.layoutManager = LinearLayoutManager(this)
 
         val adapter = RecentBuyAdapter( this,

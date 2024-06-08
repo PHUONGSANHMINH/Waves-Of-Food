@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +13,6 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.wavesoffood.MenuBottomSheetFragment
 import com.example.wavesoffood.R
 import com.example.wavesoffood.adapter.MenuAdapter
-import com.example.wavesoffood.adapter.PopuplarAdapter
 import com.example.wavesoffood.databinding.FragmentHomeBinding
 import com.example.wavesoffood.model.MenuItem
 import com.google.firebase.database.DataSnapshot

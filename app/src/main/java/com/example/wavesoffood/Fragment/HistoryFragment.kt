@@ -14,7 +14,7 @@ import com.example.wavesoffood.adapter.BuyAgainAdapter
 import com.example.wavesoffood.databinding.FragmentHistoryBinding
 import com.example.wavesoffood.databinding.RecentBuyItemBinding
 import com.example.wavesoffood.model.OrderDetails
-import com.example.wavesoffood.recentOrderItems
+import com.example.wavesoffood.RecentOrderItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -54,8 +54,8 @@ class HistoryFragment : Fragment() {
 
     private fun seeItemsRecentBuy() {
         listOfOrderItem.firstOrNull()?.let { recentBuy ->
-            val intent = Intent(requireContext(),recentOrderItems::class.java)
-            intent.putExtra("RecentBuyOrderItem", listOfOrderItem)
+            val intent = Intent(requireContext(),RecentOrderItems::class.java)
+            intent.putExtra("RecentBuyOrderItem", recentBuy)
             startActivity(intent)
         }
     }
