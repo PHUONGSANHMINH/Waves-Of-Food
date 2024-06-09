@@ -3,7 +3,6 @@ package com.example.wavesoffood
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.wavesoffood.adapter.RecentBuyAdapter
 import com.example.wavesoffood.databinding.ActivityRecentOrderItemsBinding
 import com.example.wavesoffood.model.OrderDetails
@@ -25,17 +24,25 @@ class RecentOrderItems : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
-        val recentOrderItems = intent.getSerializableExtra("RecentBuyOrderItem") as ArrayList<OrderDetails>
-        recentOrderItems ?.let{orderDetails ->
+
+        val recentOrderItems = intent.getSerializableExtra("RecentBuyOrderItem") as? ArrayList<OrderDetails>
+        recentOrderItems?.let { orderDetails ->
             if (orderDetails.isNotEmpty()) {
                 val recentOrderItem: OrderDetails = orderDetails[0]
 
-                allFoodNames = recentOrderItem.foodNames as ArrayList<String>
-                allFoodImages = recentOrderItem.foodImages as ArrayList<String>
-                allFoodPrices = recentOrderItem.foodPrices as ArrayList<String>
-                allFoodQuantities = recentOrderItem.foodQuantities as ArrayList<Int>
+                allFoodNames = ArrayList(recentOrderItem.foodNames ?: listOf())
+                allFoodImages = ArrayList(recentOrderItem.foodImages ?: listOf())
+                allFoodPrices = ArrayList(recentOrderItem.foodPrices ?: listOf())
+                allFoodQuantities = ArrayList(recentOrderItem.foodQuantities ?: listOf())
             }
+        } ?: run {
+            // Xử lý trường hợp không có dữ liệu hoặc dữ liệu không đúng kiểu
+            allFoodNames = arrayListOf()
+            allFoodImages = arrayListOf()
+            allFoodPrices = arrayListOf()
+            allFoodQuantities = arrayListOf()
         }
+
         setAdapter()
     }
 
@@ -43,15 +50,14 @@ class RecentOrderItems : AppCompatActivity() {
         val rv = binding.recyclerViewRecentBuy
         rv.layoutManager = LinearLayoutManager(this)
 
-        val adapter = RecentBuyAdapter( this,
-
-        allFoodNames,
-        allFoodImages,
-        allFoodPrices,
-        allFoodQuantities
+        val adapter = RecentBuyAdapter(
+            this,
+            allFoodNames,
+            allFoodImages,
+            allFoodPrices,
+            allFoodQuantities
         )
 
         rv.adapter = adapter
     }
-
 }

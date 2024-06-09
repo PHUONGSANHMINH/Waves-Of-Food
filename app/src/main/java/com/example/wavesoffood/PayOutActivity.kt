@@ -99,9 +99,8 @@ class PayOutActivity : AppCompatActivity() {
     }
 
     private fun removeItemFromCart() {
-        val cartItemsReference = databaseReference.child("user").child(userId).child("CartIt")
+        val cartItemsReference = databaseReference.child("user").child(userId).child("CartItems")
         cartItemsReference.removeValue()
-
     }
 
     private fun calculateTotalAmount(): Int {
